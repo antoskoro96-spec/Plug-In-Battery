@@ -1,2 +1,2 @@
 # Plug-In-Battery
-PV System with ESP32-6C as "Brain"
+PV System with ESP32-6C as "Brain" (-> platzhalter -> besser erklären!)
