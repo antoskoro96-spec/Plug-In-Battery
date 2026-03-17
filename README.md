@@ -21,9 +21,8 @@ Writable (Zigbee -> ESP -> MQTT):
 The project is designed in a modular way to clearly separate Ethernet, MQTT, Zigbee, and global system state.
 
 
-==================================================
-1) FILE STRUCTURE AND RESPONSIBILITIES
-==================================================
+
+##1) FILE STRUCTURE AND RESPONSIBILITIES
 
 Recommended reading order:
 1. config.h
