@@ -33,9 +33,8 @@ Recommended reading order:
 6. plug_in_battery_bridge.ino
 
 
---------------------------------
-1. config.h
---------------------------------
+
+### 1. config.h
 This is the central configuration file.
 
 Contains:
@@ -53,9 +52,7 @@ config.h holds all system-wide constants and settings.
 If you need to change topics, limits, timers, or pins, start here.
 
 
---------------------------------
-2. state_store.h
---------------------------------
+### 2. state_store.h
 Defines the structure of the global system state.
 
 Includes:
@@ -76,9 +73,7 @@ Summary:
 Defines WHAT data exists and how it is structured.
 
 
---------------------------------
-3. state_store.cpp
---------------------------------
+### 3. state_store.cpp
 Implements the global state.
 
 Includes:
@@ -89,9 +84,7 @@ Summary:
 Implements the logic defined in state_store.h.
 
 
---------------------------------
-4. eth_manager.h
---------------------------------
+### 4. eth_manager.h
 Header for Ethernet module.
 
 Defines:
@@ -102,9 +95,7 @@ Summary:
 Public interface for Ethernet handling.
 
 
---------------------------------
-5. eth_manager.cpp
---------------------------------
+### 5. eth_manager.cpp
 Contains Ethernet logic.
 
 Handles:
@@ -118,10 +109,7 @@ Handles:
 Summary:
 Responsible for physical network connectivity.
 
-
---------------------------------
-6. mqtt_bridge.h
---------------------------------
+### 6. mqtt_bridge.h
 Header for MQTT module.
 
 Defines:
@@ -140,9 +128,7 @@ Summary:
 Public interface for MQTT operations.
 
 
---------------------------------
-7. mqtt_bridge.cpp
---------------------------------
+### 7. mqtt_bridge.cpp
 Contains all MQTT logic.
 
 Handles:
@@ -162,9 +148,7 @@ Summary:
 Core communication bridge to Victron.
 
 
---------------------------------
-8. zigbee_bridge.h
---------------------------------
+### 8. zigbee_bridge.h
 Header for Zigbee module.
 
 Defines:
@@ -177,9 +161,7 @@ Summary:
 Public interface for Zigbee functionality.
 
 
---------------------------------
-9. zigbee_bridge.cpp
---------------------------------
+### 9. zigbee_bridge.cpp
 Contains all Zigbee logic.
 
 Handles:
@@ -197,9 +179,7 @@ Summary:
 Connects internal state to Zigbee2MQTT / Home Assistant.
 
 
---------------------------------
-10. plug_in_battery_bridge.ino
---------------------------------
+### 10. plug_in_battery.ino 
 Main file of the project.
 
 Handles:
@@ -216,9 +196,7 @@ Important:
 Contains no business logic, only coordination.
 
 
-==================================================
-2) EXISTING MQTT TOPICS
-==================================================
+## 2) EXISTING MQTT TOPICS
 
 Three types of topics are used:
 
@@ -227,9 +205,7 @@ Three types of topics are used:
 3. Write Topics
 
 
---------------------------------
-A) Read Topics (Victron -> ESP -> Zigbee)
---------------------------------
+### 1. Read Topics (Victron -> ESP -> Zigbee)
 
 Battery Voltage
 N/.../Dc/Battery/Voltage
@@ -248,9 +224,7 @@ N/.../Dc/Battery/Soc
 -> State of Charge in %
 
 
---------------------------------
-B) Readback Topics (confirmation)
---------------------------------
+### 2. Readback Topics (confirmation)
 
 Grid Setpoint (actual)
 N/.../Settings/CGwacs/AcPowerSetPoint
@@ -262,9 +236,7 @@ Important:
 These are the confirmed values from Victron.
 
 
---------------------------------
-C) Write Topics (ESP -> Victron)
---------------------------------
+### 3. Write Topics (ESP -> Victron)
 
 Grid Setpoint
 W/.../Settings/CGwacs/AcPowerSetPoint
@@ -275,9 +247,8 @@ W/.../Settings/CGwacs/MaxFeedInPower
 Used when values are changed via Zigbee.
 
 
---------------------------------
-D) Wake / Keepalive Topics
---------------------------------
+### 4. Wake / Keepalive Topics
+
 
 Used to keep Victron data alive:
 
@@ -285,9 +256,7 @@ R/.../Serial
 R/.../keepalive
 
 
-==================================================
-3) HOW TO SET LIMITS
-==================================================
+## 3) HOW TO SET LIMITS
 
 Limits are defined in config.h:
 
@@ -311,9 +280,7 @@ These limits apply everywhere:
 - internal validation
 
 
-==================================================
-4) ADDING NEW TOPICS
-==================================================
+## 4) ADDING NEW MQTT TOPICS
 
 Depends on type:
 
@@ -321,9 +288,7 @@ A) Read-only
 B) Writable
 
 
---------------------------------
-A) ADD READ-ONLY TOPIC
---------------------------------
+### 1. ADD READ-ONLY TOPIC
 
 Steps:
 
@@ -336,9 +301,7 @@ Steps:
 7. Add debug output (optional)
 
 
---------------------------------
-B) ADD WRITABLE TOPIC
---------------------------------
+### 2. ADD WRITABLE TOPIC
 
 Steps:
 
@@ -353,9 +316,7 @@ Steps:
 9. Add debug output
 
 
-==================================================
-5) IMPORTANT CONCEPT
-==================================================
+## 5) IMPORTANT CONCEPT
 
 Each writable value has:
 
@@ -371,9 +332,7 @@ Why:
 - enables retry logic
 
 
-==================================================
-6) SUMMARY
-==================================================
+## 6) SUMMARY
 
 config.h
 -> configuration
