@@ -352,5 +352,3 @@ zigbee_bridge.*
 plug_in_battery_bridge.ino
 -> main control loop
 
-
-END OF FILE
