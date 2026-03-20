@@ -8,7 +8,7 @@
 #include <ArduinoJson.h>
 
 #ifndef ZIGBEE_MODE_ED
-#error "Bitte in Tools -> Zigbee mode auf Zigbee End Device stellen"
+#error "Please set "Zigbee mode" to "Zigbee End Device" in Tools."
 #endif
 
 #include "Zigbee.h"
