@@ -354,7 +354,7 @@ Why:
 - avoids false UI feedback
 - enables retry logic
 
-# Plug-In Battery – Zigbee2MQTT Converter
+# Zigbee-Converter
 
 This project contains the Zigbee2MQTT external converter for the ESP32-C6 battery bridge.
 
