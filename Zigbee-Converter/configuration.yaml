@@ -1,0 +1,52 @@
+version: 5
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: wa5chohj1bah0oeChooloh3aereaW0chughiewaipuweing5xiomeiDees8ahQu4
+serial:
+  baudrate: 115200
+  rtscts: false
+  port: >-
+    /dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_0c90bacfa7c2ef119daac3138148b910-if00-port0
+  adapter: ember
+advanced:
+  log_level: info
+  channel: 11
+  network_key:
+    - 30
+    - 18
+    - 41
+    - 246
+    - 119
+    - 249
+    - 119
+    - 55
+    - 163
+    - 70
+    - 122
+    - 197
+    - 179
+    - 206
+    - 205
+    - 47
+  pan_id: 5916
+  external_converters:
+    - external_converters/markolab_battery_test.mjs
+  ext_pan_id:
+    - 92
+    - 210
+    - 122
+    - 94
+    - 32
+    - 117
+    - 222
+    - 55
+frontend:
+  enabled: true
+  port: 8099
+homeassistant:
+  enabled: true
+devices:
+  '0x404ccafffe40c618':
+    friendly_name: '0x404ccafffe40c618'
