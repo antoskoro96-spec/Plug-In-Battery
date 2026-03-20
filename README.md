@@ -1,4 +1,4 @@
-# Plug-In-Battery
+# plug_in_battery
 
 This project is a modular ESP32-C6 bridge for:
 
