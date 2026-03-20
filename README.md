@@ -354,3 +354,208 @@ Why:
 - avoids false UI feedback
 - enables retry logic
 
+# Plug-In Battery – Zigbee2MQTT Converter
+
+This project contains the Zigbee2MQTT external converter for the ESP32-C6 battery bridge.
+
+It is responsible for:
+- Mapping Zigbee endpoints to meaningful values
+- Exposing data to Home Assistant
+- Handling writable values (Grid Setpoint, Feed-In Limit)
+
+This is the abstraction layer between:
+ESP32 firmware ↔ Zigbee ↔ Home Assistant
+
+
+## 1) FILE STRUCTURE AND LOCATIONS
+
+Two files are required for proper operation:
+
+1. configuration.yaml  
+→ MUST be placed in:
+   /homeassistant/zigbee2mqtt/
+
+2. markolab_battery_test.mjs  
+→ MUST be placed in:
+   /homeassistant/zigbee2mqtt/external_converters/
+
+
+### configuration.yaml
+
+This file configures Zigbee2MQTT.
+
+Important section:
+
+advanced:
+  external_converters:
+    - external_converters/markolab_battery_test.mjs
+
+Summary:
+Registers the external converter.
+
+Without this → converter will NOT load.
+
+
+### markolab_battery_test.mjs
+
+This is the core converter.
+
+Defines:
+- fromZigbee (reading values)
+- toZigbee (writing values)
+- exposes (Home Assistant entities)
+- fingerprint (device identification)
+
+Summary:
+Defines HOW Zigbee data is interpreted.
+
+
+## 2) ZIGBEE ENDPOINT MAPPING
+
+### READ VALUES (genAnalogInput)
+
+Endpoint mapping:
+
+10 → SoC [%]  
+11 → Battery Voltage [V]  
+12 → Battery Current [A]  
+13 → Battery Power [W]
+
+
+### WRITE VALUES (genAnalogOutput)
+
+Endpoint mapping:
+
+14 → Grid Setpoint [W]  
+15 → Max Feed-In Power [W]
+
+
+## 3) EXPOSED ENTITIES
+
+Defined via exposes:
+
+Read-only:
+- soc
+- battery_voltage
+- battery_current
+- battery_power
+
+Writable:
+- grid_setpoint
+- max_feedin_power
+
+
+Limits:
+
+Grid Setpoint:
+-100 → 300 W
+
+Max Feed-In:
+0 → 800 W
+
+
+## 4) DATA FLOW
+
+READ PATH:
+Victron → MQTT → ESP32 → Zigbee → Converter → Home Assistant
+
+WRITE PATH:
+Home Assistant → Converter → Zigbee → ESP32 → MQTT → Victron
+
+
+## 5) IMPORTANT CONCEPT
+
+Each writable value has:
+
+requested
+→ value set by Home Assistant
+
+actual
+→ value confirmed via MQTT
+
+This ensures:
+- reliable feedback
+- correct UI values
+- retry logic
+
+
+## 6) ADDING NEW VALUES
+
+### A) Read Value
+
+1. Add endpoint in ESP32
+2. Add mapping in fromZigbee
+3. Add expose
+
+
+### B) Writable Value
+
+1. Add endpoint in ESP32
+2. Add to toZigbee
+3. Add expose with limits
+
+
+## 7) FINGERPRINT
+
+Must match ESP32 device:
+
+modelID: ESP32C6_Battery_Bridge  
+manufacturerName: MarkoLab
+
+Otherwise converter will NOT be used.
+
+
+## 8) TROUBLESHOOTING
+
+Converter not working:
+
+- Check file paths
+- Check configuration.yaml entry
+- Restart Zigbee2MQTT
+- Check logs
+
+
+Values not visible:
+
+- Wrong endpoint mapping
+- ESP not sending data
+- Converter mismatch
+
+
+Cannot write values:
+
+- Check endpoints (14 / 15)
+- Check cluster (genAnalogOutput)
+- Check limits
+
+
+## 9) SUMMARY
+
+configuration.yaml
+→ integrates converter
+
+markolab_battery_test.mjs
+→ defines logic
+
+ESP32
+→ provides data + control
+
+Zigbee2MQTT
+→ communication layer
+
+Home Assistant
+→ visualization and control
+
+
+## FINAL NOTE
+
+This converter is tightly coupled with the ESP32 firmware.
+
+If you change:
+- endpoints
+- clusters
+- limits
+
+→ you MUST update BOTH:
+- ESP32 code
+- converter file
