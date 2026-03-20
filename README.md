@@ -353,6 +353,6 @@ mqtt_bridge.*
 zigbee_bridge.*
 -> Zigbee interface
 
-plug_in_battery_bridge.ino
+plug_in_battery.ino
 -> main control loop
 
