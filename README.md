@@ -445,13 +445,9 @@ Writable:
 - max_feedin_power
 
 
-Limits:
-
-Grid Setpoint:
--100 → 300 W
-
-Max Feed-In:
-0 → 800 W
+Limits (Min/Max):
+- grid_setpoint
+- max_feedin_power
 
 
 ## 4) DATA FLOW
