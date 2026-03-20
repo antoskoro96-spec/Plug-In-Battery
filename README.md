@@ -199,6 +199,25 @@ Acts as the orchestrator of the system.
 Important:
 Contains no business logic, only coordination.
 
+### SUMMARY
+
+config.h
+-> configuration
+
+state_store.*
+-> system state
+
+eth_manager.*
+-> Ethernet
+
+mqtt_bridge.*
+-> MQTT communication
+
+zigbee_bridge.*
+-> Zigbee interface
+
+plug_in_battery.ino
+-> main control loop
 
 ## 2) EXISTING MQTT TOPICS
 
@@ -334,25 +353,4 @@ Why:
 - ensures reliability
 - avoids false UI feedback
 - enables retry logic
-
-
-## 6) SUMMARY
-
-config.h
--> configuration
-
-state_store.*
--> system state
-
-eth_manager.*
--> Ethernet
-
-mqtt_bridge.*
--> MQTT communication
-
-zigbee_bridge.*
--> Zigbee interface
-
-plug_in_battery.ino
--> main control loop
 
