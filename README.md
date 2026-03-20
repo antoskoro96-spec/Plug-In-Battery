@@ -302,8 +302,22 @@ These limits apply everywhere:
 - MQTT readback
 - internal validation
 
+## 4) IMPORTANT CONCEPT
 
-## 4) ADDING NEW MQTT TOPICS
+Each writable value has:
+
+requested
+-> value requested by Zigbee / HA
+
+actual
+-> value confirmed via MQTT readback
+
+Why:
+- ensures reliability
+- avoids false UI feedback
+- enables retry logic
+- 
+## 5) ADDING NEW MQTT TOPICS
 
 Depends on type:
 
@@ -338,21 +352,6 @@ Steps:
 8. Implement write callback
 9. Add debug output
 
-
-## 5) IMPORTANT CONCEPT
-
-Each writable value has:
-
-requested
--> value requested by Zigbee / HA
-
-actual
--> value confirmed via MQTT readback
-
-Why:
-- ensures reliability
-- avoids false UI feedback
-- enables retry logic
 
 # Zigbee-Converter
 
