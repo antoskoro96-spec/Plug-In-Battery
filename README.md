@@ -356,7 +356,7 @@ Why:
 
 # Zigbee-Converter
 
-This project contains the Zigbee2MQTT external converter for the ESP32-C6 battery bridge.
+This project contains the Zigbee2MQTT (https://www.zigbee2mqtt.io/) external converter for the ESP32-C6 battery bridge.
 
 It is responsible for:
 - Mapping Zigbee endpoints to meaningful values
