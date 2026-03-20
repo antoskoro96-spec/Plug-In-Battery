@@ -307,8 +307,8 @@ These limits apply everywhere:
 
 Depends on type:
 
-A) Read-only
-B) Writable
+1. Read-only
+2. Writable
 
 
 ### 1. ADD READ-ONLY TOPIC
