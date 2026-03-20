@@ -26,11 +26,15 @@ The project is designed in a modular way to clearly separate Ethernet, MQTT, Zig
 
 Recommended reading order:
 1. config.h
-2. state_store.h / state_store.cpp
-3. eth_manager.h / eth_manager.cpp
-4. mqtt_bridge.h / mqtt_bridge.cpp
-5. zigbee_bridge.h / zigbee_bridge.cpp
-6. plug_in_battery_bridge.ino
+2. state_store.h
+3. state_store.cpp
+4. eth_manager.h
+5. eth_manager.cpp
+6. mqtt_bridge.h
+7. mqtt_bridge.cpp
+8. zigbee_bridge.h
+9. zigbee_bridge.cpp
+10. plug_in_battery.ino
 
 
 
