@@ -1,5 +1,4 @@
 # plug_in_battery
-HAAAALLLOOOO
 This project is a modular ESP32-C6 bridge for:
 
 - LAN / Ethernet via W5500
